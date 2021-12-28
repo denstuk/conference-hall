@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceHall.API", "ConferenceHall.API\ConferenceHall.API.csproj", "{3C0702E8-D5B0-4689-899A-79A4E7064B85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceHall.Tests", "ConferenceHall.Tests\ConferenceHall.Tests.csproj", "{BBEAC03D-043C-489E-A6AF-621711FE6F9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +14,15 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C0702E8-D5B0-4689-899A-79A4E7064B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C0702E8-D5B0-4689-899A-79A4E7064B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C0702E8-D5B0-4689-899A-79A4E7064B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C0702E8-D5B0-4689-899A-79A4E7064B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBEAC03D-043C-489E-A6AF-621711FE6F9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBEAC03D-043C-489E-A6AF-621711FE6F9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBEAC03D-043C-489E-A6AF-621711FE6F9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBEAC03D-043C-489E-A6AF-621711FE6F9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
