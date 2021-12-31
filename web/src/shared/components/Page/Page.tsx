@@ -1,10 +1,10 @@
 import React from "react";
 import "./Page.sass";
-import {Header} from "../Header/Header";
+import { Header } from "../Header/Header";
 
 type IPageProps = {
-    content: React.ReactNode
-}
+    content: React.ReactNode;
+};
 
 export const Page: React.FC<IPageProps> = ({ content }: IPageProps) => {
     return (
@@ -13,4 +13,4 @@ export const Page: React.FC<IPageProps> = ({ content }: IPageProps) => {
             <div className="page__content">{content}</div>
         </div>
     );
-}
+};
