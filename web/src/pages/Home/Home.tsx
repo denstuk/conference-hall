@@ -1,13 +1,20 @@
-import React, {FC} from "react";
-import "./Home.sass"
-import {Navigation} from "../../shared/components/Navigation/Navigation";
-import {LastConferencesBoard} from "./components/LastConferencesBoard/LastConferencesBoard";
+import React, { FC } from "react";
+import "./Home.sass";
+import { FeedBoard } from "./components/FeedBoard/FeedBoard";
+import { Board } from "../../shared/components/Board/Board";
+import { InvitationBoard } from "./components/InvitationBoard/InvitationBoard";
+import { YourBoard } from "./components/YourBoard/YourBoard";
 
 export const Home: FC = () => {
-    return <div className="home-page">
-        <div className="home-page__row">
-            <Navigation />
+    return (
+        <div className="home-page">
+            <div className="home-page__feed-menu-wrapper">
+                <Board content={<FeedBoard />} />
+            </div>
+            <div className="home-page__personal-menu-wrapper">
+                <InvitationBoard />
+                <YourBoard />
+            </div>
         </div>
-        <LastConferencesBoard />
-    </div>
-}
+    );
+};
