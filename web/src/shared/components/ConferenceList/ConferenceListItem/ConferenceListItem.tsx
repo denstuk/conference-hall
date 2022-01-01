@@ -1,17 +1,20 @@
-import React, { FC } from "react";
-import { IConference } from "../../../../core/conferences/types";
+import dayjs from "dayjs";
+import React from "react";
+import { Link } from "react-router-dom";
+import { IConference } from "../../../../core/types";
+import { cutString } from "../../../libs/string";
 import "./ConferenceListItem.sass";
 
 type ConferenceListItemProps = {
     conference: IConference;
 };
 
-export const ConferenceListItem: FC<ConferenceListItemProps> = ({ conference }: ConferenceListItemProps) => {
+export const ConferenceListItem: React.FC<ConferenceListItemProps> = ({ conference }: ConferenceListItemProps) => {
     return (
         <div className="conference-list-item">
             <div className="conference-list-item__link">
-                <a href="#1">{conference.title}</a>
-                <p>{conference.createdAt.toISOString()}</p>
+                <Link to={`/conferences/${conference.id}`}>{cutString(conference.title, 50)}</Link>
+                <p>{dayjs(conference.createdAt).format("HH:mm D-MMM-YYYY")}</p>
             </div>
             <hr />
         </div>
