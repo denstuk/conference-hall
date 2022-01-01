@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import "./BoardTitle.sass";
 
 type IBoardTitleProps = {
@@ -6,7 +6,7 @@ type IBoardTitleProps = {
     title: string;
 };
 
-export const BoardTitle: FC<IBoardTitleProps> = ({ title, emoji }: IBoardTitleProps) => {
+export const BoardTitle: React.FC<IBoardTitleProps> = ({ title, emoji }: IBoardTitleProps) => {
     return (
         <div className="board-title">
             <h3>{emoji ?? ""}</h3>
