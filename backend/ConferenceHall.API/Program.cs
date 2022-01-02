@@ -58,4 +58,3 @@ app.UseStaticFiles(new StaticFileOptions()
     RequestPath = new PathString("/static")
 });
 app.Run();
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJkNjAwMGFjZS05MjEwLTRlNDYtYTVmZS0zM2IyZGZhMDNjMmIiLCJuYmYiOjE2NDA2MjgyMTUsImV4cCI6MTY0MTIzMzAxNSwiaWF0IjoxNjQwNjI4MjE1LCJpc3MiOiJodHRwczovL2RlbnN0dWsucnUiLCJhdWQiOiJodHRwczovL2RlbnN0dWsucnUifQ.AgaeK5M5sF_4X4BAsFmteGgRYFZTe_p63jT0U-uztuQ
