@@ -1,7 +1,8 @@
-# ConferenceHall Client
+# ConferenceHall:Client
 
-## Architecture:
-- Structure: Page-code structure
-- Styles: Styled-components
-- Routing: React-router
-- WS: SignalR
+## Architecture
+
+- Structure: page-code structure  
+- Styles: sass + BEM  
+- Routing: React-router  
+- WS: SignalR  
