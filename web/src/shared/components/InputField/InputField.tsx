@@ -8,9 +8,8 @@ type InputFieldProps = {
 }
 
 export const InputField: React.FC<InputFieldProps> = ({ setFunc, name, type }: InputFieldProps) => {
-    const setInput = (e: any) => setFunc(e.value.target);
     return <div className="input-field">
         <p className="input-field__name">{name}</p>
-        <input className="input-field__input" onChange={setInput} type={type} />
+        <input className="input-field__input" onChange={(e) => setFunc(e.target.value)} type={type} />
     </div>;
 }
