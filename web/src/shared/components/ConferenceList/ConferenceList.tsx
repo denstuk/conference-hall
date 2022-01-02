@@ -1,15 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
+import { IConference } from "../../../core/types";
+import { ConferenceListItem } from "./ConferenceListItem/ConferenceListItem";
 
 type ConferenceListProps = {
-    conferences: { id: number, title: string }[]
-}
+    conferences: IConference[];
+};
 
-export const ConferenceList: FC<ConferenceListProps> = ({ conferences }: ConferenceListProps) => {
-    return <div className="conference-list">
-        {
-            conferences.map((conference) => {
-                return (<div></div>)
-            })
-        }
-    </div>
-}
+export const ConferenceList: React.FC<ConferenceListProps> = ({ conferences }: ConferenceListProps) => {
+    return (
+        <div className="conference-list">
+            {conferences.map((c) => <ConferenceListItem key={c.id} conference={c} />)}
+        </div>
+    );
+};

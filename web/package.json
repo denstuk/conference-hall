@@ -10,12 +10,14 @@
     "@types/node": "^12.20.37",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "dayjs": "^1.10.7",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-fontawesome": "^1.7.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
+    "react-tsparticles": "^1.38.0",
     "styled-components": "^5.3.3",
     "typescript": "^4.5.2",
     "web-vitals": "^1.1.2"
@@ -46,10 +48,12 @@
     ]
   },
   "devDependencies": {
+    "@types/faker": "^5.5.9",
     "@types/react-fontawesome": "^1.6.5",
     "@types/react-router-dom": "^5.3.2",
     "@types/styled-components": "^5.1.19",
     "eslint": "^7.32.0",
+    "faker": "^5.5.3",
     "prettier": "^2.5.1"
   }
 }

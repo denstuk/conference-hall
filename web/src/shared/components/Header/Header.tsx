@@ -1,23 +1,19 @@
-import React, {FC} from "react";
+import React from "react";
 import "./Header.sass";
-import FA from "react-fontawesome";
+import { Link } from "react-router-dom";
+import { HeaderUser } from "./HeaderUser/HeaderUser";
 
-export const Header: FC = () => {
+export const Header: React.FC = () => {
     const isAuthorized = true;
 
-    return <header className="page-header">
-        <div className="page-header__logo">
-            Conference<span className="page-header__color-wrapper">Hall</span>
-        </div>
-        <div className="page-header__user">
-            {
-                isAuthorized ? <div className="page-header__user-info">
-                    <div>@denstuk</div>
-                    <FA className="page-header__user-img" name="user-circle" />
-                </div> : <div>
-                    <button>Регистрация</button>
-                </div>
-            }
-        </div>
-    </header>
-}
+    return (
+        <header className="page-header">
+            <div className="page-header__logo">
+                <Link to="/">Conference<span className="page-header__color-wrapper">Hall</span></Link>
+            </div>
+            <div className="page-header__user">
+                { isAuthorized ? <HeaderUser /> : <div><button>Регистрация</button></div> }
+            </div>
+        </header>
+    );
+};
