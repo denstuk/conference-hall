@@ -1,8 +1,10 @@
 ﻿using ConferenceHall.API.Application.Http.Providers;
 using ConferenceHall.API.Domain.Auth;
 using ConferenceHall.API.Domain.Auth.Interfaces;
+using ConferenceHall.API.Domain.FileSystem.Interfaces;
 using ConferenceHall.API.Domain.Services;
-using ConferenceHall.API.Domain.Services.Interfaces;
+using ConferenceHall.API.Domain.Users.Interfaces;
+using ConferenceHall.API.Domain.Users.Services;
 using ConferenceHall.API.Infrastructure.Database.Repositories;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
 

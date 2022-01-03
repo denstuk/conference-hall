@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using ConferenceHall.API.Domain.Auth.Dtos;
-using ConferenceHall.API.Domain.Dtos;
-using ConferenceHall.API.Domain.Services.Interfaces;
+using ConferenceHall.API.Domain.Users.Dtos;
+using ConferenceHall.API.Domain.Users.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

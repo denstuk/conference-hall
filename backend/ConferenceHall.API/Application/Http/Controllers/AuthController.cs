@@ -1,8 +1,8 @@
 ﻿using ConferenceHall.API.Application.Http.Providers;
 using ConferenceHall.API.Domain.Auth.Dtos;
 using ConferenceHall.API.Domain.Auth.Interfaces;
-using ConferenceHall.API.Domain.Entities;
-using ConferenceHall.API.Domain.Services.Interfaces;
+using ConferenceHall.API.Domain.Users.Entities;
+using ConferenceHall.API.Domain.Users.Interfaces;
 using ConferenceHall.API.Infrastructure.Database.Repositories;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

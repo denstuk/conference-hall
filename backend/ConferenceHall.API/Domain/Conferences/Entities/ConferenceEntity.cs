@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ConferenceHall.API.Domain.Users.Entities;
 
-namespace ConferenceHall.API.Domain.Entities;
+namespace ConferenceHall.API.Domain.Conferences.Entities;
 
 [Table("conferences")]
 public class ConferenceEntity

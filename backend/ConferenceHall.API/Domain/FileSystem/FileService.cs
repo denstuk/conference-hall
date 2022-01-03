@@ -1,4 +1,4 @@
-﻿using ConferenceHall.API.Domain.Services.Interfaces;
+﻿using ConferenceHall.API.Domain.FileSystem.Interfaces;
 
 namespace ConferenceHall.API.Domain.Services;
 

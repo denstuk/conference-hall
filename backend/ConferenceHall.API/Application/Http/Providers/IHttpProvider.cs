@@ -1,4 +1,4 @@
-﻿using ConferenceHall.API.Domain.Entities;
+﻿using ConferenceHall.API.Domain.Users.Entities;
 
 namespace ConferenceHall.API.Application.Http.Providers;
 

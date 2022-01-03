@@ -1,4 +1,4 @@
-﻿using ConferenceHall.API.Domain.Entities;
+﻿using ConferenceHall.API.Domain.Conferences.Entities;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
 
 namespace ConferenceHall.API.Infrastructure.Database.Repositories;

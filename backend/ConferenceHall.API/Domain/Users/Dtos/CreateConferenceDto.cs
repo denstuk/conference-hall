@@ -1,4 +1,4 @@
-﻿namespace ConferenceHall.API.Domain.Dtos;
+﻿namespace ConferenceHall.API.Domain.Users.Dtos;
 
 public class CreateConferenceDto
 {

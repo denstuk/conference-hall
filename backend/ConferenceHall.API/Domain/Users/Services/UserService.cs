@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using ConferenceHall.API.Domain.Auth.Dtos;
 using ConferenceHall.API.Domain.Auth.Interfaces;
-using ConferenceHall.API.Domain.Dtos;
-using ConferenceHall.API.Domain.Entities;
-using ConferenceHall.API.Domain.Services.Interfaces;
+using ConferenceHall.API.Domain.Users.Entities;
+using ConferenceHall.API.Domain.Users.Interfaces;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
 
-namespace ConferenceHall.API.Domain.Services;
+namespace ConferenceHall.API.Domain.Users.Services;
 
 public class UserService : IUserService
 {

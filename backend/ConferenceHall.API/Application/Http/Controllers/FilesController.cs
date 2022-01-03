@@ -1,4 +1,4 @@
-﻿using ConferenceHall.API.Domain.Services.Interfaces;
+﻿using ConferenceHall.API.Domain.FileSystem.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConferenceHall.API.Application.Http.Controllers;

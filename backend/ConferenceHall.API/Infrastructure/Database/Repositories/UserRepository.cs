@@ -1,4 +1,4 @@
-﻿using ConferenceHall.API.Domain.Entities;
+﻿using ConferenceHall.API.Domain.Users.Entities;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

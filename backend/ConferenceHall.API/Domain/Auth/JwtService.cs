@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using System.Text;
 using ConferenceHall.API.Domain.Auth.Interfaces;
-using ConferenceHall.API.Domain.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ConferenceHall.API.Domain.Auth;

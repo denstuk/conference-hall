@@ -1,8 +1,7 @@
 ﻿using ConferenceHall.API.Domain.Auth.Dtos;
-using ConferenceHall.API.Domain.Dtos;
-using ConferenceHall.API.Domain.Entities;
+using ConferenceHall.API.Domain.Users.Entities;
 
-namespace ConferenceHall.API.Domain.Services.Interfaces;
+namespace ConferenceHall.API.Domain.Users.Interfaces;
 
 public interface IUserService
 {
