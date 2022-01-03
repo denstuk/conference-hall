@@ -1,23 +1,14 @@
-﻿using ConferenceHall.API.Domain.Users.Entities;
+﻿using ConferenceHall.API.Domain.Users.Dtos;
+using ConferenceHall.API.Domain.Users.Entities;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConferenceHall.API.Infrastructure.Database.Repositories
 {
-	public struct FilterListParams
-	{
-		public List<Guid>? Ids { get; set; }
-		public string? Email { get; set; }
-		public string? Login { get; set; }
-		public int? Take { get; set; } = 25;
-		public int? Skip { get; set; } = 0;
-		public bool? JoinConferences { get; set; } = false;
-	}
-	
 	public class UserRepository : BaseRepository<UserEntity>, IUserRepository
 	{
 		public UserRepository(DatabaseContext context) : base(context) {}
-		public async Task<List<UserEntity>> FilterList(FilterListParams filterParams)
+		public async Task<List<UserEntity>> FilterList(FilterUserParams filterParams)
 		{
 			var qb = _dbSet.AsQueryable();
 			if (filterParams.Ids is not null) qb = qb.Where((u) => filterParams.Ids.Contains(u.Id));

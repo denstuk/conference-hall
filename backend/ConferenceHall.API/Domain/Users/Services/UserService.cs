@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ConferenceHall.API.Domain.Auth.Dtos;
 using ConferenceHall.API.Domain.Auth.Interfaces;
+using ConferenceHall.API.Domain.Users.Dtos;
 using ConferenceHall.API.Domain.Users.Entities;
 using ConferenceHall.API.Domain.Users.Interfaces;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
@@ -20,9 +21,9 @@ public class UserService : IUserService
         _hashService = hashService;
     }
 
-    public Task<IEnumerable<UserEntity>> GetUsersFilter()
+    public Task<List<UserEntity>> GetUsersFilter(FilterUserParams filterParams)
     {
-        return _userRepository.Get();
+        return _userRepository.FilterList(filterParams);
     }
 
     public async Task<UserEntity> CreateUser(SignUpDto dto)
