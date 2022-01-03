@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ConferenceHall.API.Domain.Auth.Dtos;
 using ConferenceHall.API.Domain.Dtos;
 using ConferenceHall.API.Domain.Entities;
 

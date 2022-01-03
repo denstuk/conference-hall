@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ConferenceHall.API.Domain.Auth.Dtos;
+using ConferenceHall.API.Domain.Auth.Interfaces;
 using ConferenceHall.API.Domain.Dtos;
 using ConferenceHall.API.Domain.Entities;
 using ConferenceHall.API.Domain.Services.Interfaces;
@@ -27,7 +29,8 @@ public class UserService : IUserService
     public async Task<UserEntity> CreateUser(SignUpDto dto)
     {
         var user = _mapper.Map<UserEntity>(dto);
-        user.Password = _hashService.Create(dto.Password);
+        user.Salt = _hashService.GenerateSalt();
+        user.Password = _hashService.GeneratePassword(user.Salt, dto.Password);
         await _userRepository.Insert(user);
         return user;
     }
