@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
+using ConferenceHall.API.Domain.Users.Dtos;
 using ConferenceHall.API.Domain.Users.Entities;
-using ConferenceHall.API.Infrastructure.Database.Repositories;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
 
 namespace ConferenceHall.API.Application.Http.Providers;
@@ -18,7 +18,7 @@ public class HttpProvider : IHttpProvider
         string? id = identity.Claims.FirstOrDefault((o) => o.Type == ClaimTypes.NameIdentifier)?.Value;
         if (id is null) throw new Exception("Invalid token");
 
-        List<UserEntity> users = await _userRepository.FilterList(new FilterListParams()
+        List<UserEntity> users = await _userRepository.FilterList(new FilterUserParams()
         {
             Ids = new List<Guid>() { Guid.Parse(id) },
             Take = 1,
