@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using ConferenceHall.API.Domain.Auth.Dtos;
+using ConferenceHall.API.Domain.Users.Commands;
 using ConferenceHall.API.Domain.Users.Dtos;
 using ConferenceHall.API.Domain.Users.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,26 +13,44 @@ namespace ConferenceHall.API.Application.Http.Controllers
 	{
 		private readonly IUserService _userService;
 		private readonly IMapper _mapper;
+		private readonly IMediator _mediator;
 
-		public UsersController(IUserService userService, IMapper mapper)
+		public UsersController(IUserService userService, IMapper mapper, IMediator mediator)
 		{
 			_userService = userService;
 			_mapper = mapper;
+			_mediator = mediator;
 		}
-
+		
+		/// <summary>
+		/// Find users
+		/// </summary>
 		[HttpGet("")]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-		public async Task<ActionResult<IEnumerable<SecureUserDto>>> GetUsers()
+		public async Task<ActionResult<IEnumerable<SecureUserDto>>> GetUsers([FromBody] FilterUserParams filterParams)
 		{
-			var users = await _userService.GetUsersFilter();
+			var users = await _userService.GetUsersFilter(filterParams);
 			return Ok(_mapper.Map<IEnumerable<SecureUserDto>>(users));
 		}
 
-		[HttpPost("")]
-		public async Task<ActionResult<SecureUserDto>> CreateUser([FromBody] SignUpDto dto)
+		/// <summary>
+		/// Delete user
+		/// </summary>
+		[HttpDelete("/{userId}")]
+		public async Task<ActionResult> DeleteUserById([FromRoute] Guid userId)
 		{
-			var user = await _userService.CreateUser(dto);
-			return Ok(user);
+			await _mediator.Send(new DeleteUserCommand() { Id = userId });
+			return Ok();
+		}
+		
+		/// <summary>
+		/// Block user to provided date
+		/// </summary>
+		[HttpPost("/{userId}/block")]
+		public async Task<ActionResult> BlockUserById([FromRoute] Guid userId, [FromBody] DateTime until)
+		{
+			await _mediator.Send(new BlockUserCommand() { Id = userId, BlockedUntil = until });
+			return Ok();
 		}
 	}
 }
