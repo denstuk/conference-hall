@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
 using ConferenceHall.API.Domain.Auth;
-using ConferenceHall.API.Domain.Services;
 using Xunit;
 
-namespace ConferenceHall.Tests.Framework;
+namespace ConferenceHall.Tests.Auth;
 
 public class HashServiceTest
 {
