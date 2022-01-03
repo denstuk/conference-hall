@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Text;
-using ConferenceHall.API.Application.Hubs;
 using ConferenceHall.API.Infrastructure;
 using ConferenceHall.API.Infrastructure.Database;
 using ConferenceHall.API.Infrastructure.Documentation;
@@ -49,20 +48,18 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
 /* Application configuration */
-var app = builder.Build();  
+var app = builder.Build();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Static")),
+    RequestPath = new PathString("/static")
+});
+app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseAuthentication();
 app.MapControllers();
-app.UseStaticFiles(new StaticFileOptions()
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Static")),
-    RequestPath = new PathString("/static")
-});
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<ChatHub>("/conference");
-});
+
 app.Run();
