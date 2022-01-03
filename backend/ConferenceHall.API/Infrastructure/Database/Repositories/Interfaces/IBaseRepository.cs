@@ -1,4 +1,4 @@
-﻿namespace ConferenceHall.API.Infrastructure.Database.Repositories
+﻿namespace ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces
 {
     public interface IBaseRepository<TEntity>
     {

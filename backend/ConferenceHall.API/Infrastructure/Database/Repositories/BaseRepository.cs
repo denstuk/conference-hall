@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferenceHall.API.Infrastructure.Database.Repositories
 {
