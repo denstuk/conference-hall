@@ -1,10 +1,8 @@
 ﻿using ConferenceHall.API.Application.Http.Providers;
+using ConferenceHall.API.Domain.Auth.Commands;
 using ConferenceHall.API.Domain.Auth.Dtos;
-using ConferenceHall.API.Domain.Auth.Interfaces;
 using ConferenceHall.API.Domain.Users.Entities;
-using ConferenceHall.API.Domain.Users.Interfaces;
-using ConferenceHall.API.Infrastructure.Database.Repositories;
-using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,51 +11,26 @@ namespace ConferenceHall.API.Application.Http.Controllers;
 
 public class AuthController : ApiController
 {
-    private readonly IUserRepository _userRepository;
-    private readonly IUserService _userService;
-    private readonly IJwtService _jwtService;
     private readonly IHttpProvider _httpProvider;
-    private readonly IHashService _hashService;
+    private readonly IMediator _mediator;
 
-    public AuthController(
-        IUserRepository userRepository, 
-        IUserService userService, 
-        IJwtService jwtService, 
-        IHttpProvider httpProvider,
-        IHashService hashService)
+    public AuthController(IHttpProvider httpProvider, IMediator mediator)
     {
-        _userRepository = userRepository;
-        _userService = userService;
-        _jwtService = jwtService;
         _httpProvider = httpProvider;
-        _hashService = hashService;
+        _mediator = mediator;
     }
     
     [HttpPost("sign-up")]
-    public async Task<ActionResult<string>> SignUp([FromBody] SignUpDto dto)
+    public async Task<ActionResult<TokenDto>> SignUp([FromBody] SignUpCommand command)
     {
-        List<UserEntity> checkEmail = await _userRepository.FilterList(new FilterListParams() { Email = dto.Email });
-        if (checkEmail.Count > 0) return Conflict("Email already taken");
-
-        List<UserEntity> checkLogin = await _userRepository.FilterList(new FilterListParams() { Login = dto.Login });
-        if (checkLogin.Count > 0) return Conflict("Login already taken");
-
-        UserEntity user = await _userService.CreateUser(dto);
-        
-        string token = _jwtService.Generate(user.Id);
+        var token = await _mediator.Send(command);
         return Ok(token);
     }
 
     [HttpPost("sign-in")]
-    public async Task<ActionResult<string>> SingIn([FromBody] SignInDto dto)
+    public async Task<ActionResult<string>> SingIn([FromBody] SignUpCommand command)
     {
-        List<UserEntity> users = await _userRepository.FilterList(new FilterListParams() { Email = dto.Email, Take = 1 });
-        if (users.Count == 0) return NotFound("User not found");
-
-        UserEntity user = users[0];
-        if (!_hashService.TryPassword(dto.Password, user.Salt, user.Password)) return Unauthorized("Invalid password");
-        
-        string token = _jwtService.Generate(user.Id);
+        var token = await _mediator.Send(command);
         return Ok(token);
     }
 
