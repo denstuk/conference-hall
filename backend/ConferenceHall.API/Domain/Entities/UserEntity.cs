@@ -21,6 +21,10 @@ namespace ConferenceHall.API.Domain.Entities
 		[EmailAddress]
 		[Column("email")]
 		public string Email { get; set; }
+		
+		[Required]
+		[Column("salt")]
+		public string Salt { get; set; }
 
 		[Required]
 		[Column("password")]
