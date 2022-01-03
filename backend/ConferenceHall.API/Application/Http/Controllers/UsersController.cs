@@ -25,7 +25,7 @@ namespace ConferenceHall.API.Application.Http.Controllers
 		/// <summary>
 		/// Find users
 		/// </summary>
-		[HttpGet("")]
+		[HttpPost("/search")]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		public async Task<ActionResult<IEnumerable<SecureUserDto>>> GetUsers([FromBody] FilterUserParams filterParams)
 		{
