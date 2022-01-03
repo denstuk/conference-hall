@@ -28,7 +28,7 @@ public class AuthController : ApiController
     }
 
     [HttpPost("sign-in")]
-    public async Task<ActionResult<string>> SingIn([FromBody] SignUpCommand command)
+    public async Task<ActionResult<string>> SingIn([FromBody] SignInCommand command)
     {
         var token = await _mediator.Send(command);
         return Ok(token);
