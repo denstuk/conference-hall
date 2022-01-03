@@ -1,4 +1,4 @@
-﻿namespace ConferenceHall.API.Domain.Services.Interfaces;
+﻿namespace ConferenceHall.API.Domain.Auth.Interfaces;
 
 public interface IJwtService
 {

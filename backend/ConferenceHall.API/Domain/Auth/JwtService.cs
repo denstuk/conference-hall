@@ -1,10 +1,11 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using ConferenceHall.API.Domain.Auth.Interfaces;
 using ConferenceHall.API.Domain.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 
-namespace ConferenceHall.API.Domain.Services;
+namespace ConferenceHall.API.Domain.Auth;
 
 public class JwtService : IJwtService
 {
@@ -46,7 +47,7 @@ public class JwtService : IJwtService
                 ValidIssuer = _configuration.GetValue<string>("TOKEN_ISSUER"),
                 ValidAudience = _configuration.GetValue<string>("TOKEN_AUDIENCE"),
                 IssuerSigningKey = mySecurityKey
-            }, out SecurityToken validatedToken);
+            }, out SecurityToken _);
         }
         catch
         {

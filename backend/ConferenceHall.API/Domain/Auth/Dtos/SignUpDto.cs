@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace ConferenceHall.API.Domain.Dtos;
+namespace ConferenceHall.API.Domain.Auth.Dtos;
 public class SignUpDto
 {
     [MinLength(1)] 
