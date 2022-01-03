@@ -2,6 +2,6 @@
 
 public class SecureUserDto
 {
-    public string Login { get; set; }
-    public string Email { get; set; }
+    public string Login { get; set; } = default!;
+    public string Email { get; set; } = default!;
 }
