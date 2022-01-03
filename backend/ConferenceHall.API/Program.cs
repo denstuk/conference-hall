@@ -1,4 +1,5 @@
 using System.Text;
+using ConferenceHall.API.Application.Hubs;
 using ConferenceHall.API.Infrastructure;
 using ConferenceHall.API.Infrastructure.Database;
 using ConferenceHall.API.Infrastructure.Documentation;
@@ -56,5 +57,9 @@ app.UseStaticFiles(new StaticFileOptions()
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Static")),
     RequestPath = new PathString("/static")
+});
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/conference");
 });
 app.Run();
