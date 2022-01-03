@@ -1,4 +1,6 @@
 ﻿using ConferenceHall.API.Domain.FileSystem.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConferenceHall.API.Application.Http.Controllers;
@@ -13,6 +15,7 @@ public class FilesController : ApiController
     }
     
     [HttpPost("")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public async Task<ActionResult> UploadFile(IFormFileCollection uploads)
     {
         await _fileService.Upload(uploads);
