@@ -1,4 +1,6 @@
 ﻿using ConferenceHall.API.Application.Http.Providers;
+using ConferenceHall.API.Domain.Auth;
+using ConferenceHall.API.Domain.Auth.Interfaces;
 using ConferenceHall.API.Domain.Services;
 using ConferenceHall.API.Domain.Services.Interfaces;
 using ConferenceHall.API.Infrastructure.Database.Repositories;
