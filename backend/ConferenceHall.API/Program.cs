@@ -1,8 +1,10 @@
+using System.Reflection;
 using System.Text;
 using ConferenceHall.API.Application.Hubs;
 using ConferenceHall.API.Infrastructure;
 using ConferenceHall.API.Infrastructure.Database;
 using ConferenceHall.API.Infrastructure.Documentation;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -11,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 /* Application builder configuration */
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddDbContext<DatabaseContext>(x =>
 {
     x.UseNpgsql(builder.Configuration.GetConnectionString("DbPostgres"));
