@@ -8,4 +8,6 @@ public interface IUserService
 {
     Task<List<UserEntity>> GetUsersFilter(FilterUserParams filterParams);
     Task<UserEntity> CreateUser(SignUpDto dto);
+    Task DeleteUser(Guid id);
+    Task BlockUser(Guid id, DateTime dateTime);
 }

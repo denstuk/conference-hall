@@ -34,4 +34,25 @@ public class UserService : IUserService
         await _userRepository.Insert(user);
         return user;
     }
+
+    public async Task DeleteUser(Guid id)
+    {
+        var users = await _userRepository.FilterList(new FilterUserParams() { Ids = new List<Guid>() { id } });
+        if (users.Count == 0)
+        {
+            throw new Exception("User not found");
+        }
+        await _userRepository.Delete(users[0]);
+    }
+
+    public async Task BlockUser(Guid id, DateTime date)
+    {
+        var users = await _userRepository.FilterList(new FilterUserParams() { Ids = new List<Guid>() { id } });
+        if (users.Count == 0)
+        {
+            throw new Exception("User not found");
+        }
+        users[0].BlockedUntil = date;
+        await _userRepository.Update(users[0]);
+    }
 }
