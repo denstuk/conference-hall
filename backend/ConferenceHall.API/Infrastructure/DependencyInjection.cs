@@ -5,6 +5,8 @@ using ConferenceHall.API.Domain.Conferences.Interfaces;
 using ConferenceHall.API.Domain.Conferences.Services;
 using ConferenceHall.API.Domain.Files.Interfaces;
 using ConferenceHall.API.Domain.Files.Services;
+using ConferenceHall.API.Domain.Messages.Interfaces;
+using ConferenceHall.API.Domain.Messages.Services;
 using ConferenceHall.API.Domain.Users.Interfaces;
 using ConferenceHall.API.Domain.Users.Services;
 using ConferenceHall.API.Infrastructure.Database.Repositories;
@@ -27,6 +29,7 @@ namespace ConferenceHall.API.Infrastructure
 			
 			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IConferenceService, ConferenceService>();
+			services.AddScoped<IMessageService, MessageService>();
 		}
 	}
 }
