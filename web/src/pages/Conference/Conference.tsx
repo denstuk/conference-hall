@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./Conference.sass";
 import faker from "faker";
 import { Message } from "./components/Message/Message";
 import { MessageMocker } from "../../shared/lib/mocks/messages";
+import {useNavigate} from "react-router-dom";
+import {useAppSelector} from "../../shared/store";
 
 export const Conference: React.FC = () => {
+    const navigate = useNavigate();
+    const state = useAppSelector((state) => state.authReducer);
+
+    useEffect(() => {
+        !state.authorized && navigate("/auth?sign-in")
+    });
+
     // const { id } = useParams(); TODO:Development
     const [title] = useState(faker.random.words(5));
     const [messages, setMessages] = useState(MessageMocker.many(2));
