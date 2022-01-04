@@ -18,13 +18,15 @@ namespace ConferenceHall.API.Infrastructure
 		{
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IConferenceRepository, ConferenceRepository>();
+			services.AddScoped<IMessageRepository, MessageRepository>();
+			
 			services.AddScoped<IHashService, HashService>();
-			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IFileService, FileService>();
 			services.AddScoped<IJwtService, JwtService>();
 			services.AddScoped<IHttpProvider, HttpProvider>();
+			
+			services.AddScoped<IUserService, UserService>();
 			services.AddScoped<IConferenceService, ConferenceService>();
-			services.AddScoped<IMessageRepository, MessageRepository>();
 		}
 	}
 }
