@@ -1,26 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Me.sass";
-import {ConferenceList} from "../../shared/components/ConferenceList/ConferenceList";
-import {ConferenceMocker} from "../../shared/mocks/conferences";
+import { ConferenceList } from "../../shared/components/ConferenceList/ConferenceList";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import {authDispatchers, useAppSelector} from "../../shared/store";
+import {ConferenceMocker} from "../../shared/lib/mocks/conferences";
 
-const tempPath = "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+const tempPath =
+    "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80";
 
 export const Me: React.FC = () => {
-    return <div className="me-page">
-        <div className="me-page__form">
-            <div className="me-page__main">
-                <div className="me-page__photo">
-                    <img src={tempPath} alt="me" />
+    const dispatch = useDispatch();
+    const { logout } = bindActionCreators(authDispatchers, dispatch);
+    const state = useAppSelector((state) => state.authReducer);
+    const navigator = useNavigate();
+
+    useEffect(() => {
+        if (!state.authorized) navigator("/");
+    });
+
+    return (
+        <div className="me-page">
+            <div className="me-page__form">
+                <div className="me-page__main">
+                    <div className="me-page__photo">
+                        <img src={tempPath} alt="me" />
+                    </div>
+                    <div className="me-page__username">
+                        <h1>@{state.user?.login}</h1>
+                        <h2>{state.user?.email}</h2>
+                    </div>
                 </div>
-                <div className="me-page__username">
-                    <h1>Denis Stuk</h1>
-                    <h2>@denstuk</h2>
+                <h1 className="me-page__title">Conferences</h1>
+                <div className="me-page__conferences">
+                    <ConferenceList conferences={ConferenceMocker.many(5)} />
                 </div>
-            </div>
-            <h1>Conferences</h1>
-            <div className="me-page__conferences">
-                <ConferenceList conferences={ConferenceMocker.many(5)} />
+                <h1 className="me-page__title">Settings</h1>
+                <div className="me-page__settings">
+                    <button>Edit</button>
+                    <button onClick={logout}>Logout</button>
+                </div>
             </div>
         </div>
-    </div>;
-}
+    );
+};

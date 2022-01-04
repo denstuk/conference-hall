@@ -29,7 +29,12 @@
 
 
 .me-page__username > h1
-  font-size: 26px
+  font-size: 4vmin
+  font-weight: 500
+
+.me-page__username > h2
+  font-size: 3vmin
+  margin-top: 10px
 
 .me-page__conferences
   margin-top: 20px
@@ -41,4 +46,30 @@
   background: #8070D4
   border: 6px solid rgba(0,0,0,0.2)
 
+.me-page__title
+  margin-top: 20px
+  font-size: 3vmin
+  font-weight: 200
+  letter-spacing: 1px
 
+.me-page__settings
+  margin-top: 10px
+  display: flex
+  flex-direction: column
+
+.me-page__settings > button
+  background-color: #fb8310
+  color: white
+  width: 100%
+  border: none
+  margin-top: 10px
+  height: 40px
+  font-size: 3vmin
+  cursor: pointer
+  border-radius: 10px
+  box-shadow: 0 0 7px #fb8310
+  transition: 0.2s
+  letter-spacing: 2px
+
+.me-page__settings > button:hover
+  box-shadow: 0 0 7px darken(#fb8310, 20%)
