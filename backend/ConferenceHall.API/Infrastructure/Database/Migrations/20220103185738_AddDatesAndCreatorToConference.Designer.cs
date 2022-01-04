@@ -3,6 +3,7 @@ using System;
 using ConferenceHall.API.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ConferenceHall.API.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220103185738_AddDatesAndCreatorToConference")]
+    partial class AddDatesAndCreatorToConference
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,43 +69,6 @@ namespace ConferenceHall.API.Infrastructure.Database.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("conferences");
-                });
-
-            modelBuilder.Entity("ConferenceHall.API.Domain.Messages.Entities.MessageEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<Guid>("ConferenceId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("conference_id");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_at");
-
-                    b.Property<Guid>("CreatorId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("creator_id");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConferenceId");
-
-                    b.HasIndex("CreatorId");
-
-                    b.ToTable("MessageEntity");
                 });
 
             modelBuilder.Entity("ConferenceHall.API.Domain.Users.Entities.UserEntity", b =>
@@ -182,35 +147,9 @@ namespace ConferenceHall.API.Infrastructure.Database.Migrations
                     b.Navigation("Creator");
                 });
 
-            modelBuilder.Entity("ConferenceHall.API.Domain.Messages.Entities.MessageEntity", b =>
-                {
-                    b.HasOne("ConferenceHall.API.Domain.Conferences.Entities.ConferenceEntity", "Conference")
-                        .WithMany("Messages")
-                        .HasForeignKey("ConferenceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConferenceHall.API.Domain.Users.Entities.UserEntity", "Creator")
-                        .WithMany("Messages")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Conference");
-
-                    b.Navigation("Creator");
-                });
-
-            modelBuilder.Entity("ConferenceHall.API.Domain.Conferences.Entities.ConferenceEntity", b =>
-                {
-                    b.Navigation("Messages");
-                });
-
             modelBuilder.Entity("ConferenceHall.API.Domain.Users.Entities.UserEntity", b =>
                 {
                     b.Navigation("CreatedConferences");
-
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }
