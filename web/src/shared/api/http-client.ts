@@ -17,7 +17,6 @@ export class HttpClient {
     }
 
     protected static interceptor(error: Error): never {
-        console.log('here')
         toast(error.message, {
             type: "error",
             position: "bottom-right",
