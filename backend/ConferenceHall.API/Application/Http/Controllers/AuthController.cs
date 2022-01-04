@@ -1,4 +1,5 @@
-﻿using ConferenceHall.API.Application.Http.Providers;
+﻿using AutoMapper;
+using ConferenceHall.API.Application.Http.Providers;
 using ConferenceHall.API.Domain.Auth.Dtos;
 using ConferenceHall.API.Domain.Auth.Handlers.Commands;
 using ConferenceHall.API.Domain.Users.Entities;
@@ -13,11 +14,13 @@ public class AuthController : ApiController
 {
     private readonly IHttpProvider _httpProvider;
     private readonly IMediator _mediator;
+    private readonly IMapper _mapper;
 
-    public AuthController(IHttpProvider httpProvider, IMediator mediator)
+    public AuthController(IHttpProvider httpProvider, IMediator mediator, IMapper mapper)
     {
         _httpProvider = httpProvider;
         _mediator = mediator;
+        _mapper = mapper;
     }
     
     [HttpPost("sign-up")]
@@ -39,6 +42,6 @@ public class AuthController : ApiController
     public async Task<ActionResult<UserEntity>> Me()
     {
         var user = await _httpProvider.GetUser(HttpContext);
-        return Ok(user);
+        return Ok(_mapper.Map<UserEntity>(user));
     }
 }
