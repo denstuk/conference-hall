@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text;
+using ConferenceHall.API.Application.Hubs;
 using ConferenceHall.API.Infrastructure;
 using ConferenceHall.API.Infrastructure.Database;
 using ConferenceHall.API.Infrastructure.Documentation;
@@ -13,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddSignalR();
 builder.Services.AddDbContext<DatabaseContext>(x =>
 {
     x.UseNpgsql(builder.Configuration.GetConnectionString("DbPostgres"));
@@ -21,6 +23,7 @@ builder.Services.AddDbContext<DatabaseContext>(x =>
 DependencyInjection.Register(builder.Services);
 SwaggerDocumentation.Register(builder.Services);
 
+//builder.Services.AddCors();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -55,11 +58,17 @@ app.UseStaticFiles(new StaticFileOptions()
     RequestPath = new PathString("/static")
 });
 app.UseRouting();
+app.MapHub<ConferenceHub>("/chatHub");
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseAuthentication();
 app.MapControllers();
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 
 app.Run();
