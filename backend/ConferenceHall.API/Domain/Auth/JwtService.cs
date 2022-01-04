@@ -54,4 +54,24 @@ public class JwtService : IJwtService
         }
         return true;
     }
+
+    public Guid ExtractUserId(string token)
+    {
+        var securityKey = GenerateKey();
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var parsedToken = tokenHandler.ValidateToken(token, new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidIssuer = _configuration.GetValue<string>("TOKEN_ISSUER"),
+            ValidAudience = _configuration.GetValue<string>("TOKEN_AUDIENCE"),
+            IssuerSigningKey = securityKey
+        }, out SecurityToken _);
+        var id = parsedToken.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+        return Guid.Parse(id.Value);
+    }
+
+    private SymmetricSecurityKey GenerateKey() =>
+        new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration.GetValue<string>("TOKEN_SECRET")));
 }
