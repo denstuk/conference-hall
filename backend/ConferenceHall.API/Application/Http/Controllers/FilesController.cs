@@ -1,4 +1,4 @@
-﻿using ConferenceHall.API.Domain.FileSystem.Interfaces;
+﻿using ConferenceHall.API.Domain.Files.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

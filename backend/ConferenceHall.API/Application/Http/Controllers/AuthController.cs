@@ -1,6 +1,6 @@
 ﻿using ConferenceHall.API.Application.Http.Providers;
-using ConferenceHall.API.Domain.Auth.Commands;
 using ConferenceHall.API.Domain.Auth.Dtos;
+using ConferenceHall.API.Domain.Auth.Handlers.Commands;
 using ConferenceHall.API.Domain.Users.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
