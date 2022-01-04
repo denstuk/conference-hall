@@ -1,0 +1,26 @@
+.header-auth
+  display: flex
+  flex-direction: row
+  gap: 10px
+  justify-content: center
+  align-items: center
+
+.header-auth > button
+  background-color: #fb8310
+  color: white
+  border: none
+  height: 30px
+  font-size: 12px
+  cursor: pointer
+  border-radius: 10px
+  box-shadow: 0 0 7px #fb8310
+  transition: 0.2s
+  letter-spacing: 1px
+  padding: 0 20px 0 20px
+
+.header-auth > button:hover
+  box-shadow: 0 0 7px darken(#fb8310, 20%)
+
+@media screen and (max-width: 400px)
+  .header-auth > button
+    font-size: 10px
