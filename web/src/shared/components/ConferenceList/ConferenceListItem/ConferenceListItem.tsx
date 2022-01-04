@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import React from "react";
 import { Link } from "react-router-dom";
-import { IConference } from "../../../../core/types";
-import { cutString } from "../../../libs/string";
+import { IConference } from "../../../../core";
+import { cutString } from "../../../lib/string";
 import "./ConferenceListItem.sass";
 
 type ConferenceListItemProps = {

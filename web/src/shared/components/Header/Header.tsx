@@ -1,18 +1,23 @@
 import React from "react";
 import "./Header.sass";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeaderUser } from "./HeaderUser/HeaderUser";
+import {useAppSelector} from "../../store";
+
 
 export const Header: React.FC = () => {
-    const isAuthorized = true;
+    const state = useAppSelector((state) => state.authReducer);
+    const navigator = useNavigate();
 
     return (
         <header className="page-header">
             <div className="page-header__logo">
-                <Link to="/">Conference<span className="page-header__color-wrapper">Hall</span></Link>
+                <Link to="/">
+                    Conference<span className="page-header__color-wrapper">Hall</span>
+                </Link>
             </div>
             <div className="page-header__user">
-                { isAuthorized ? <HeaderUser /> : <div><button>Регистрация</button></div> }
+                {state.authorized ? <HeaderUser /> : <button onClick={() => navigator("/auth")}>Authentication</button>}
             </div>
         </header>
     );
