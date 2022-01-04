@@ -49,10 +49,25 @@
   font-size: 22px
   cursor: pointer
   border-radius: 10px
-  box-shadow: 0px 0px 7px #fb8310
+  box-shadow: 0 0 7px #fb8310
   transition: 0.2s
 
 .auth-page__btn:hover
-  box-shadow: 0px 0px 7px darken(#fb8310, 20%)
+  box-shadow: 0 0 7px darken(#fb8310, 20%)
+
+@media screen and (max-width: 990px)
+  .auth-page
+    justify-content: center
+    align-items: center
+
+  .auth-page__form
+    margin-top: 20px
+    margin-bottom: 20px
+    width: 80%
+
+  .auth-page__background
+    position: absolute
+    z-index: -5
+    width: 100%
 
 
