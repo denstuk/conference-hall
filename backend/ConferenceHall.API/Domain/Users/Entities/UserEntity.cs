@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ConferenceHall.API.Domain.Conferences.Entities;
+using ConferenceHall.API.Domain.Messages.Entities;
+using ConferenceHall.API.Domain.Shared;
 using ConferenceHall.API.Domain.Users.Enums;
 
 namespace ConferenceHall.API.Domain.Users.Entities
 {
 	[Table("users")]
-	public class UserEntity
+	public class UserEntity : BaseEntity
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		[Key]
@@ -39,6 +41,8 @@ namespace ConferenceHall.API.Domain.Users.Entities
 		[Column("blocked_until")]
 		public DateTime? BlockedUntil { get; set; }
 
-		public ICollection<ConferenceEntity> Conferences { get; set; } = new List<ConferenceEntity>();
+		public List<ConferenceEntity> Conferences { get; set; } = new();
+		public List<ConferenceEntity> CreatedConferences { get; set; } = new();
+		public List<MessageEntity> Messages = new();
 	}
 }
