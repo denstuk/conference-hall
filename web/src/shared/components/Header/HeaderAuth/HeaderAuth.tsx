@@ -7,6 +7,6 @@ export const HeaderAuth: React.FC = () => {
 
     return <div className="header-auth">
         <button onClick={() => navigate("/auth?sign-in")}>Sign In</button>
-        <button onClick={() => navigate("/auth?sing-up")}>Sign Up</button>
+        <button onClick={() => navigate("/auth?sign-up")}>Sign Up</button>
     </div>
 }
