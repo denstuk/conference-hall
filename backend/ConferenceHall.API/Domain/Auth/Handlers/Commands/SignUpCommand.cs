@@ -7,7 +7,7 @@ using ConferenceHall.API.Domain.Users.Interfaces;
 using MediatR;
 using Newtonsoft.Json;
 
-namespace ConferenceHall.API.Domain.Auth.Commands;
+namespace ConferenceHall.API.Domain.Auth.Handlers.Commands;
 
 public class SignUpCommand : IRequest<TokenDto>
 {
