@@ -23,9 +23,9 @@ namespace ConferenceHall.API.Application.Http.Controllers
 		}
 		
 		/// <summary>
-		/// Find users
+		/// Search users
 		/// </summary>
-		[HttpPost("/search")]
+		[HttpPost("search")]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 		public async Task<ActionResult<IEnumerable<SecureUserDto>>> GetUsers([FromBody] FilterUserParams filterParams)
 		{
@@ -34,9 +34,9 @@ namespace ConferenceHall.API.Application.Http.Controllers
 		}
 
 		/// <summary>
-		/// Delete user
+		/// Delete user by id
 		/// </summary>
-		[HttpDelete("/{userId}")]
+		[HttpDelete("{userId}")]
 		public async Task<ActionResult> DeleteUserById([FromRoute] Guid userId)
 		{
 			await _mediator.Send(new DeleteUserCommand() { Id = userId });
@@ -44,9 +44,9 @@ namespace ConferenceHall.API.Application.Http.Controllers
 		}
 		
 		/// <summary>
-		/// Block user to provided date
+		/// Block user by id until provided date
 		/// </summary>
-		[HttpPost("/{userId}/block")]
+		[HttpPost("{userId}/block")]
 		public async Task<ActionResult> BlockUserById([FromRoute] Guid userId, [FromBody] DateTime until)
 		{
 			await _mediator.Send(new BlockUserCommand() { Id = userId, BlockedUntil = until });
