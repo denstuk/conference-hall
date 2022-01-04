@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { LocalStorage } from "./shared/lib/providers/local-storage";
 import { authDispatchers } from "./shared/store";
+import {StorageKey} from "./core/constants";
 
 function App() {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function App() {
 
     useEffect(() => {
         async function checkAuthorization(): Promise<void> {
-            const token = LocalStorage.get("AUTH_TOKEN");
+            const token = LocalStorage.get(StorageKey.AccessToken);
             if (!token) {
                 logout();
                 return;

@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {LocalStorage} from "../../shared/lib/providers/local-storage";
 import { authDispatchers } from "../../shared/store";
+import {StorageKey} from "../../core/constants";
 
 export const Auth: React.FC = () => {
     const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export const Auth: React.FC = () => {
         e.preventDefault();
         try {
             const token = isSignUp ? await AuthAPI.signUp({ login, email, password }) : await AuthAPI.signIn({ email, password });
-            LocalStorage.set("AUTH_TOKEN", token);
+            LocalStorage.set(StorageKey.AccessToken, token);
             const user = await AuthAPI.me();
             authorize(user);
             navigate("/");

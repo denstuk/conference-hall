@@ -16,4 +16,8 @@ export class LocalStorage {
         const value = localStorage.getItem(key);
         return value ? value : undefined;
     }
+
+    static remove(key: string): void {
+        localStorage.removeItem(key);
+    }
 }
