@@ -24,6 +24,7 @@ namespace ConferenceHall.API.Infrastructure
 			services.AddScoped<IJwtService, JwtService>();
 			services.AddScoped<IHttpProvider, HttpProvider>();
 			services.AddScoped<IConferenceService, ConferenceService>();
+			services.AddScoped<IMessageRepository, MessageRepository>();
 		}
 	}
 }
