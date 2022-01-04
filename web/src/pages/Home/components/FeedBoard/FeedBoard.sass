@@ -2,21 +2,29 @@
   width: 100%
   margin-bottom: 20px
   display: flex
-  flex-direction: row
+  flex-direction: column
   justify-content: space-between
+  align-items: center
+
+.feed-board__search-bar
+  display: flex
+  flex-direction: row
+  width: 100%
   align-items: center
 
 .feed-board__search-bar > input
   height: 30px
   margin-left: 10px
-  min-width: 400px
   outline: none
   font-size: 22px
+  width: 100%
 
 .feed-board__pagination
-  display: inline-flex
-  flex-wrap: wrap
+  display: flex
   gap: 12px
+  justify-content: flex-end
+  margin-top: 10px
+  width: 100%
   align-items: center
 
 .feed-board__pagination > button
@@ -26,3 +34,12 @@
   color: white
   background: #fb8310
   border-radius: 100px
+
+@media (max-width: 480px)
+  .feed-board__bar
+    flex-direction: column
+  .feed-board__search-bar
+    flex-direction: row
+  .feed-board__search-bar > input
+    height: 26px
+    font-size: 18px
