@@ -1,4 +1,4 @@
-﻿namespace ConferenceHall.API.Domain.FileSystem.Interfaces;
+﻿namespace ConferenceHall.API.Domain.Files.Interfaces;
 
 public interface IFileService
 {

@@ -1,6 +1,6 @@
-﻿using ConferenceHall.API.Domain.FileSystem.Interfaces;
+﻿using ConferenceHall.API.Domain.Files.Interfaces;
 
-namespace ConferenceHall.API.Domain.Services;
+namespace ConferenceHall.API.Domain.Files.Services;
 
 public class FileService : IFileService
 {
