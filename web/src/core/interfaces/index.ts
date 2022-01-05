@@ -10,7 +10,7 @@ export interface IMessage {
     id: string;
     text: string;
     createdAt: Date;
-    user: IUser;
+    creator: IUser;
 }
 
 export interface IUser {
