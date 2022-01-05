@@ -69,6 +69,7 @@ public class JwtService : IJwtService
             IssuerSigningKey = securityKey
         }, out SecurityToken _);
         var id = parsedToken.Claims.SingleOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+        if (id is null) throw new Exception("Cannot extract userId from token"); 
         return Guid.Parse(id.Value);
     }
 

@@ -84,5 +84,5 @@ public class ConnectionDto
 
 public class SendMessageDto
 {
-    public string Text { get; set; }
+    public string Text { get; set; } = default!;
 }
