@@ -27,11 +27,8 @@ public class MessageService : IMessageService
     public async Task<MessageEntity> CreateMessage(CreateMessageDto dto, UserEntity userEntity, ConferenceEntity conferenceEntity)
     {
         var message = _mapper.Map<MessageEntity>(dto);
-        message.ConferenceId = conferenceEntity.Id;
         message.Conference = conferenceEntity;
-        message.CreatorId = userEntity.Id;
         message.Creator = userEntity;
-        
         await _messageRepository.Insert(message);
         return message;
     }

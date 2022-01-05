@@ -9,5 +9,6 @@ public class MessageMappings : Profile
     public MessageMappings()
     {
         CreateMap<CreateMessageDto, MessageEntity>();
+        CreateMap<MessageEntity, ResponseMessageDto>();
     }
 }

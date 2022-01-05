@@ -6,6 +6,7 @@ using ConferenceHall.API.Domain.Users.Entities;
 
 namespace ConferenceHall.API.Domain.Messages.Entities;
 
+[Table("message")]
 public class MessageEntity : BaseEntity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,7 +27,7 @@ public class MessageEntity : BaseEntity
     [Column("conference_id")]
     public Guid ConferenceId { get; set; }
     
-    public UserEntity Creator { get; set; } = new UserEntity();
+    public UserEntity Creator { get; set; } = default!;
     
-    public ConferenceEntity Conference { get; set; } = new ConferenceEntity();
+    public ConferenceEntity Conference { get; set; } = default!;
 }
