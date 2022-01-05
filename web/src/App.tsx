@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth } from "./pages/Auth/Auth";
 import { Conference } from "./pages/Conference/Conference";
@@ -34,8 +34,8 @@ function App() {
             }
             logout();
         }
-        checkAuthorization();
-    }, []);
+        checkAuthorization().then();
+    });
 
     return (
         <div className="application">
