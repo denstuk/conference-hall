@@ -9,6 +9,6 @@ public class ConferenceMappings : Profile
     public ConferenceMappings()
     {
         CreateMap<CreateConferenceDto, ConferenceEntity>();
-        CreateMap<ConferenceEntity, ResponseConferenceDto>();
+        CreateMap<ConferenceEntity, ConferenceResponseDto>();
     }
 }

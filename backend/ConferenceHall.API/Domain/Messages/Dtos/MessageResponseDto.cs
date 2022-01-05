@@ -2,7 +2,7 @@
 
 namespace ConferenceHall.API.Domain.Messages.Dtos;
 
-public class ResponseMessageDto
+public class MessageResponseDto
 {
     public Guid Id { get; set; }
     public string Text { get; set; } = default!;

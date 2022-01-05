@@ -24,7 +24,7 @@ public class ConferencesController : ApiController
     /// Search conferences
     /// </summary>
     [HttpPost("search")]
-    public async Task<ActionResult<IEnumerable<ResponseConferenceDto>>> SearchConferences([FromBody] SearchConferencesQuery query)
+    public async Task<ActionResult<IEnumerable<ConferenceResponseDto>>> SearchConferences([FromBody] SearchConferencesQuery query)
     {
         var conferences = await _mediator.Send(query);
         return Ok(conferences);
@@ -32,7 +32,7 @@ public class ConferencesController : ApiController
 
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [HttpPost("")]
-    public async Task<ActionResult<ResponseConferenceDto>> CreateConference([FromBody] CreateConferenceDto dto)
+    public async Task<ActionResult<ConferenceResponseDto>> CreateConference([FromBody] CreateConferenceDto dto)
     {
         var user = await _provider.GetUser(HttpContext);
         var conference = await _mediator.Send(new CreateConferenceCommand() { CreateDto = dto, Creator = user, });

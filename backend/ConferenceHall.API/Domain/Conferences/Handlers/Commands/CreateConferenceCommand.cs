@@ -7,13 +7,13 @@ using MediatR;
 
 namespace ConferenceHall.API.Domain.Conferences.Handlers.Commands;
 
-public class CreateConferenceCommand : IRequest<ResponseConferenceDto>
+public class CreateConferenceCommand : IRequest<ConferenceResponseDto>
 {
     public CreateConferenceDto CreateDto { get; set; } = new();
     public UserEntity Creator { get; set; } = new();
 }
 
-public class CreateConferenceCommandHandler : IRequestHandler<CreateConferenceCommand, ResponseConferenceDto>
+public class CreateConferenceCommandHandler : IRequestHandler<CreateConferenceCommand, ConferenceResponseDto>
 {
     private readonly IConferenceService _conferenceService;
     private readonly IMapper _mapper;
@@ -26,9 +26,9 @@ public class CreateConferenceCommandHandler : IRequestHandler<CreateConferenceCo
         _mapper = mapper;
     }
     
-    public async Task<ResponseConferenceDto> Handle(CreateConferenceCommand request, CancellationToken cancellationToken)
+    public async Task<ConferenceResponseDto> Handle(CreateConferenceCommand request, CancellationToken cancellationToken)
     {
         var conference = await _conferenceService.CreateConference(request.Creator, request.CreateDto);
-        return _mapper.Map<ResponseConferenceDto>(conference);
+        return _mapper.Map<ConferenceResponseDto>(conference);
     }
 }

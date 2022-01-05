@@ -3,7 +3,7 @@ using ConferenceHall.API.Domain.Users.Dtos;
 
 namespace ConferenceHall.API.Domain.Conferences.Dtos;
 
-public class ResponseConferenceDto
+public class ConferenceResponseDto
 {
     public Guid Id { get; set; }
     public string Title { get; set; } = default!;
