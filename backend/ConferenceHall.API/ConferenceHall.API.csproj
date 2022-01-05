@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Domain\Auth\Handlers" />
-    <Folder Include="Domain\Conferences\Handlers\Commands" />
     <Folder Include="Static" />
   </ItemGroup>
 
