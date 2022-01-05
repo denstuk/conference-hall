@@ -10,6 +10,6 @@ public class UserMappings : Profile
     public UserMappings()
     {
         CreateMap<SignUpDto, UserEntity>();
-        CreateMap<UserEntity, SecureUserDto>();
+        CreateMap<UserEntity, UserResponseDto>();
     }
 }
