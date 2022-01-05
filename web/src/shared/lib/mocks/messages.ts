@@ -9,7 +9,7 @@ export class MessageMocker {
             id: String(MessageMocker.index),
             text: faker.random.words(3),
             createdAt: faker.date.past(),
-            user: {
+            creator: {
                 id: "message" + String(MessageMocker.index),
                 login: faker.internet.userName(),
                 email: faker.internet.email(),
