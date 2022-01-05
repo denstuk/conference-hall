@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 using ConferenceHall.API.Application.Hubs;
 using ConferenceHall.API.Infrastructure;
 using ConferenceHall.API.Infrastructure.Database;
@@ -25,7 +26,10 @@ SwaggerDocumentation.Register(builder.Services);
 
 //builder.Services.AddCors();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAuthentication(options =>
 {
@@ -49,6 +53,7 @@ builder.Services.AddLogging();
 builder.Services.AddHealthChecks();
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
+builder.Services.AddSingleton<IDictionary<string, ConnectionDto>>(opts => new Dictionary<string, ConnectionDto>());
 
 /* Application configuration */
 var app = builder.Build();
@@ -58,7 +63,10 @@ app.UseStaticFiles(new StaticFileOptions()
     RequestPath = new PathString("/static")
 });
 app.UseRouting();
-app.MapHub<ConferenceHub>("/chatHub");
+app.MapHub<ConferenceHub>("/chatHub", options =>
+{
+    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.WebSockets;
+});
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
@@ -69,6 +77,4 @@ app.UseCors(builder => builder
     .AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader());
-
-
 app.Run();
