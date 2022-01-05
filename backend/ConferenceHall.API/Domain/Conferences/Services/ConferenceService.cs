@@ -27,8 +27,7 @@ public class ConferenceService : IConferenceService
     {
         var conference = _mapper.Map<ConferenceEntity>(dto);
         conference.CreatorId = creator.Id;
-        conference.Creator = creator;
-        
+
         await _conferenceRepository.Insert(conference);
         return conference;
     }
