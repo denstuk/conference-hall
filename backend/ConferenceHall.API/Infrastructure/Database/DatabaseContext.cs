@@ -1,5 +1,6 @@
 ﻿using ConferenceHall.API.Domain.Conferences.Entities;
 using ConferenceHall.API.Domain.Messages.Entities;
+using ConferenceHall.API.Domain.Shared;
 using ConferenceHall.API.Domain.Users.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,41 @@ namespace ConferenceHall.API.Infrastructure.Database
 				.HasOne(m => m.Conference)
 				.WithMany(c => c.Messages)
 				.HasForeignKey(m => m.ConferenceId);
+		}
+
+		public override int SaveChanges()
+		{
+			SetTimestamps();
+			return base.SaveChanges();
+		}
+
+		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+		{
+			SetTimestamps();
+			return base.SaveChangesAsync(cancellationToken);
+		}
+
+		private void SetTimestamps()
+		{
+			var entries = ChangeTracker.Entries();
+			var utcNow = DateTime.UtcNow;
+			foreach (var entry in entries)
+			{
+				if (entry.Entity is BaseEntity trackable)
+				{
+					switch (entry.State)
+					{
+						case EntityState.Modified:
+							trackable.UpdatedAt = utcNow;
+							entry.Property("CreatedAt").IsModified = false;
+							break;
+						case EntityState.Added:
+							trackable.CreatedAt = utcNow;
+							trackable.UpdatedAt = utcNow;
+							break;
+					}
+				}
+			}
 		}
 	}
 }
