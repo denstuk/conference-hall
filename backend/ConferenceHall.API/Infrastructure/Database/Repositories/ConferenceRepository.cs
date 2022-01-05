@@ -1,6 +1,7 @@
 ﻿using ConferenceHall.API.Domain.Conferences.Dtos;
 using ConferenceHall.API.Domain.Conferences.Entities;
 using ConferenceHall.API.Infrastructure.Database.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferenceHall.API.Infrastructure.Database.Repositories;
 
@@ -10,8 +11,11 @@ public class ConferenceRepository : BaseRepository<ConferenceEntity>, IConferenc
     {
     }
 
-    public Task<List<ConferenceEntity>> FilterList(FilterConferenceParams filterParams)
+    public async Task<List<ConferenceEntity>> FilterList(FilterConferenceParams filterParams)
     {
-        throw new NotImplementedException();
+        var qb = _dbSet.AsQueryable();
+        qb = qb.Include(c => c.Creator);
+        qb = qb.OrderByDescending(x => x.CreatedAt);
+        return await qb.ToListAsync();
     }
 }
