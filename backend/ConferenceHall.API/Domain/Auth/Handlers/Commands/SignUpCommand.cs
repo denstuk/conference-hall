@@ -9,20 +9,7 @@ using Newtonsoft.Json;
 
 namespace ConferenceHall.API.Domain.Auth.Handlers.Commands;
 
-public class SignUpCommand : IRequest<TokenDto>
-{
-    [MinLength(1)] 
-    [JsonProperty("login")]
-    public string Login { get; set; } = default!;
-
-    [EmailAddress]
-    [JsonProperty("email")]
-    public string Email { get; set; } = default!;
-
-    [MinLength(8)]
-    [JsonProperty("password")]
-    public string Password { get; set; } = default!;
-}
+public class SignUpCommand : SignUpDto, IRequest<TokenDto> {}
 
 public class SignUpHandler : IRequestHandler<SignUpCommand, TokenDto>
 {

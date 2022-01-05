@@ -4,19 +4,10 @@ using ConferenceHall.API.Domain.Users.Dtos;
 using ConferenceHall.API.Domain.Users.Entities;
 using ConferenceHall.API.Domain.Users.Interfaces;
 using MediatR;
-using Newtonsoft.Json;
 
 namespace ConferenceHall.API.Domain.Auth.Handlers.Commands;
 
-public class SignInCommand : IRequest<TokenDto>
-{
-    [JsonProperty("email")] 
-    public string Email { get; set; } = default!;
-
-    [JsonProperty("password")] 
-    public string Password { get; set; } = default!;
-}
-
+public class SignInCommand : SignInDto, IRequest<TokenDto> {}
 public class SignInCommandHandler : IRequestHandler<SignInCommand, TokenDto>
 {
     private readonly IUserService _userService;
