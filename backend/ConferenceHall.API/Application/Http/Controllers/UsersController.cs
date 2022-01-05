@@ -27,10 +27,10 @@ namespace ConferenceHall.API.Application.Http.Controllers
 		/// </summary>
 		[HttpPost("search")]
 		[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-		public async Task<ActionResult<IEnumerable<SecureUserDto>>> GetUsers([FromBody] FilterUserParams filterParams)
+		public async Task<ActionResult<IEnumerable<UserResponseDto>>> GetUsers([FromBody] FilterUserParams filterParams)
 		{
 			var users = await _userService.GetUsersFilter(filterParams);
-			return Ok(_mapper.Map<IEnumerable<SecureUserDto>>(users));
+			return Ok(_mapper.Map<IEnumerable<UserResponseDto>>(users));
 		}
 
 		/// <summary>
