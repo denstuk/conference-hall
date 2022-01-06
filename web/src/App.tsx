@@ -7,12 +7,13 @@ import { Me } from "./pages/Me/Me";
 import { Page } from "./shared/components/Page/Page";
 import { Admin } from "./pages/Admin/Admin";
 import { useAuth } from "./shared/hooks";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 function App() {
-    const { auth } = useAuth();
+    const { auth, user } = useAuth();
     useEffect(() => {
         auth().then();
-    });
+    }, []);
 
     return (
         <div className="application">
@@ -21,9 +22,11 @@ function App() {
                     <Route index element={<Page content={<Home />} />} />
                     <Route path="/conferences/:id" element={<Page content={<Conference />} />} />
                     <Route path="/me" element={<Page content={<Me />} />} />
-                    <Route path="/admin" element={<Page content={<Admin />} />} />
                     <Route path="/auth" element={<Auth />} />
-                    <Route path="/admin" />
+                    {
+                        user && user.role === 2 && (<Route path="/admin" element={<Page content={<Admin />} />} />)
+                    }
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
         </div>
