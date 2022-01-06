@@ -6,6 +6,7 @@ import { ConferencesAPI } from "../../../../shared/api";
 import { IConference } from "../../../../core";
 import TailSpin from "react-loader-spinner";
 import { useRequest } from "../../../../shared/hooks";
+import {Title} from "../../../../shared/components/Title/Title";
 
 const DEFAULT_STEP = 5;
 
@@ -37,8 +38,8 @@ export const FeedBoard: React.FC = () => {
 
     return (
         <div className="feed-board">
-            <div className="your-board__header">
-                <h2 className="your-board__title">Last Conferences</h2>
+            <div className="feed-board__header">
+                <Title text="Last Conferences" />
             </div>
             <div className="feed-board__bar">
                 <div className="feed-board__search-bar">
