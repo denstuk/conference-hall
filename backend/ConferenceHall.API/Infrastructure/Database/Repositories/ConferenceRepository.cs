@@ -14,6 +14,7 @@ public class ConferenceRepository : BaseRepository<ConferenceEntity>, IConferenc
     public async Task<List<ConferenceEntity>> FilterList(FilterConferenceParams filterParams)
     {
         var qb = _dbSet.AsQueryable();
+        if (filterParams.Ids is not null) qb = qb.Where((c) => filterParams.Ids.Contains(c.Id));
         qb = qb.Include(c => c.Creator);
         qb = qb.OrderByDescending(x => x.CreatedAt);
         return await qb.ToListAsync();
