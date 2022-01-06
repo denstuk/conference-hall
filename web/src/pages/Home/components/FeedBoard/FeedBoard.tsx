@@ -2,39 +2,38 @@ import React, { useEffect, useState } from "react";
 import "./FeedBoard.sass";
 import { ConferenceList } from "../../../../shared/components/ConferenceList/ConferenceList";
 import FA from "react-fontawesome";
-import { ConferencesAPI } from "../../../../shared/api/conferences";
+import { ConferencesAPI } from "../../../../shared/api";
 import { IConference } from "../../../../core";
 import TailSpin from "react-loader-spinner";
+import { useRequest } from "../../../../shared/hooks";
 
 const DEFAULT_STEP = 5;
 
 export const FeedBoard: React.FC = () => {
-    const [loading, setLoading] = useState(true);
-    const [conferences, setConferences] = useState<IConference[]>([]);
-    const [page, setPage] = useState(0);
-
+    const { data, load, loading } = useRequest<IConference[]>(ConferencesAPI.search.bind(ConferencesAPI));
     useEffect(() => {
-        const fetchConferences = async () => {
-            const fetched = await ConferencesAPI.search();
-            setConferences([...fetched]);
-            setTimeout(() => setLoading(false), 1000);
-        };
-        fetchConferences().then();
+        load().then();
     }, []);
 
+    const [page, setPage] = useState(0);
+    const [searchInput, setSearchInput] = useState("");
+
     const incrementPage = () => {
-        if (!conferences) return;
-        const max = Math.floor(conferences.length / DEFAULT_STEP) + (conferences.length % DEFAULT_STEP === 0 ? -1 : 0);
+        if (!data) return;
+        const max = Math.floor(data.length / DEFAULT_STEP) + (data.length % DEFAULT_STEP === 0 ? -1 : 0);
         return setPage(Math.min(page + 1, max));
     };
     const decrementPage = () => {
-        if (!conferences) return;
+        if (!data) return;
         return setPage(Math.max(0, page - 1));
     };
     const paginate = (conferences: IConference[]) => {
         const start = page * DEFAULT_STEP;
         return conferences.slice(start, start + DEFAULT_STEP);
     };
+    const filter = (conferences: IConference[]) => {
+        return conferences.filter((c) => c.title.toLowerCase().includes(searchInput.toLowerCase()));
+    }
 
     return (
         <div className="feed-board">
@@ -44,7 +43,7 @@ export const FeedBoard: React.FC = () => {
             <div className="feed-board__bar">
                 <div className="feed-board__search-bar">
                     <FA name="search" />
-                    <input />
+                    <input onChange={(e) => setSearchInput(e.target.value)} />
                 </div>
             </div>
             {loading ? (
@@ -52,7 +51,7 @@ export const FeedBoard: React.FC = () => {
                     <TailSpin type="TailSpin" color="#fb8310" />
                 </div>
             ) : (
-                <ConferenceList conferences={paginate(conferences)} />
+                <ConferenceList conferences={paginate(filter(data!))} />
             )}
             <div className="feed-board__pagination">
                 <button onClick={() => decrementPage()}>
