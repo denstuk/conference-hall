@@ -23,7 +23,7 @@ export const Conference: React.FC = () => {
             setMessages([...fetchedMessages]);
         }
         if (!connection) joinRoom().then(() => fetchMessages()).then();
-    }, []);
+    });
 
     const joinRoom = async () => {
         const connection = new HubConnectionBuilder()

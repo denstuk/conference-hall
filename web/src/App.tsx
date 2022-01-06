@@ -13,7 +13,7 @@ function App() {
     const { auth, user } = useAuth();
     useEffect(() => {
         auth().then();
-    }, []);
+    }, [auth]);
 
     return (
         <div className="application">

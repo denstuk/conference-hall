@@ -14,7 +14,7 @@ export const FeedBoard: React.FC = () => {
     const { data, load, loading } = useRequest<IConference[]>(ConferencesAPI.search.bind(ConferencesAPI));
     useEffect(() => {
         load().then();
-    }, []);
+    }, [load]);
 
     const [page, setPage] = useState(0);
     const [searchInput, setSearchInput] = useState("");
