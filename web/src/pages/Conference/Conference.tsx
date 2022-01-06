@@ -2,32 +2,25 @@ import React, { useEffect, useState } from "react";
 import "./Conference.sass";
 import faker from "faker";
 import { Message } from "./components/Message/Message";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAppSelector } from "../../shared/store";
+import { useParams } from "react-router-dom";
 import { HttpTransportType, HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import { IMessage } from "../../core";
 import { LocalStorage } from "../../shared/lib/providers/local-storage";
 import { StorageKey } from "../../core/constants";
-import {MessagesAPI} from "../../shared/api";
+import { MessagesAPI } from "../../shared/api";
 
 export const Conference: React.FC = () => {
+    const { id } = useParams();
     const [connection, setConnection] = useState<HubConnection>();
     const [title] = useState(faker.random.words(5));
     const [messages, setMessages] = useState<IMessage[]>([]);
     const [inputMessage, setInputMessage] = useState("");
 
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const state = useAppSelector((state) => state.authReducer);
-
     useEffect(() => {
-        if (!state.authorized) navigate("/auth?sign-in");
-
         const fetchMessages = async (): Promise<void> => {
             const fetchedMessages = await MessagesAPI.search({ conferenceId: id! });
             setMessages([...fetchedMessages]);
         }
-
         if (!connection) joinRoom().then(() => fetchMessages()).then();
     }, []);
 
