@@ -1,6 +1,6 @@
 import React from "react";
 import { ConferenceListItem } from "./ConferenceListItem/ConferenceListItem";
-import type {IConference} from "../../../core";
+import type { IConference } from "../../../core";
 
 type ConferenceListProps = {
     conferences: IConference[];

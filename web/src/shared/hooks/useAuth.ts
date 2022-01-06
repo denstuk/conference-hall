@@ -1,10 +1,10 @@
-import {useDispatch} from "react-redux";
-import {bindActionCreators} from "redux";
-import {authDispatchers} from "../store/auth";
-import {LocalStorage} from "../lib/providers/local-storage";
-import {StorageKey} from "../../core/constants";
-import {AuthAPI} from "../api";
-import {Toaster} from "../lib/providers/toaster";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { authDispatchers } from "../store/auth";
+import { LocalStorage } from "../lib/providers/local-storage";
+import { StorageKey } from "../../core/constants";
+import { AuthAPI } from "../api";
+import { Toaster } from "../lib/providers/toaster";
 
 export const useAuth = () => {
     const dispatch = useDispatch();
@@ -25,6 +25,6 @@ export const useAuth = () => {
             Toaster.error(err.message);
         }
         logout();
-    }
+    };
     return { auth };
-}
+};
