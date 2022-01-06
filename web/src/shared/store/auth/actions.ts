@@ -1,4 +1,4 @@
-import type {IUser} from "../../../core";
+import type { IUser } from "../../../core";
 import type { AuthActionType } from "./types";
 
 interface AuthorizeAction {

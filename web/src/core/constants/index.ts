@@ -1,3 +1,3 @@
 export enum StorageKey {
-    AccessToken = "accessToken"
+    AccessToken = "accessToken",
 }

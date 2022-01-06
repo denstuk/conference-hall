@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./Conference.sass";
 import faker from "faker";
-import {Message} from "./components/Message/Message";
-import {MessageMocker} from "../../shared/lib/mocks/messages";
-import {useNavigate, useParams} from "react-router-dom";
-import {useAppSelector} from "../../shared/store";
-import {HttpTransportType, HubConnection, HubConnectionBuilder, LogLevel} from "@microsoft/signalr";
-import {IMessage} from "../../core";
-import {LocalStorage} from "../../shared/lib/providers/local-storage";
-import {StorageKey} from "../../core/constants";
+import { Message } from "./components/Message/Message";
+import { MessageMocker } from "../../shared/lib/mocks/messages";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAppSelector } from "../../shared/store";
+import { HttpTransportType, HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { IMessage } from "../../core";
+import { LocalStorage } from "../../shared/lib/providers/local-storage";
+import { StorageKey } from "../../core/constants";
 
 export const Conference: React.FC = () => {
     const [connection, setConnection] = useState<HubConnection>();
@@ -22,19 +22,22 @@ export const Conference: React.FC = () => {
 
     useEffect(() => {
         if (!state.authorized) {
-            navigate("/auth?sign-in")
+            navigate("/auth?sign-in");
         }
         if (!connection) joinRoom();
     });
 
     const joinRoom = async () => {
         const connection = new HubConnectionBuilder()
-            .withUrl("https://localhost:44391/chatHub", { skipNegotiation: true, transport: HttpTransportType.WebSockets })
+            .withUrl("https://localhost:44391/chatHub", {
+                skipNegotiation: true,
+                transport: HttpTransportType.WebSockets,
+            })
             .configureLogging(LogLevel.Information)
             .build();
         connection.on("ReceiveMessage", (message: IMessage) => {
-            console.log(message)
-            setMessages(messages => [message, ...messages]);
+            console.log(message);
+            setMessages((messages) => [message, ...messages]);
         });
         await connection.start();
         await connection.invoke("Join", {
@@ -42,7 +45,7 @@ export const Conference: React.FC = () => {
             Token: LocalStorage.get(StorageKey.AccessToken),
         });
         setConnection(connection);
-    }
+    };
 
     const sendMessage = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();

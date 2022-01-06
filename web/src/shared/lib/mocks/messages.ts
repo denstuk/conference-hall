@@ -1,5 +1,5 @@
 import faker from "faker";
-import {IMessage} from "../../../core";
+import { IMessage } from "../../../core";
 
 export class MessageMocker {
     private static index: number = 0;

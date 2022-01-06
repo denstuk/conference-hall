@@ -1,16 +1,18 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth } from "./pages/Auth/Auth";
 import { Conference } from "./pages/Conference/Conference";
 import { Home } from "./pages/Home/Home";
 import { Me } from "./pages/Me/Me";
 import { Page } from "./shared/components/Page/Page";
-import {Admin} from "./pages/Admin/Admin";
-import {useAuth} from "./shared/hooks";
+import { Admin } from "./pages/Admin/Admin";
+import { useAuth } from "./shared/hooks";
 
 function App() {
     const { auth } = useAuth();
-    useEffect(() => { auth().then() });
+    useEffect(() => {
+        auth().then();
+    });
 
     return (
         <div className="application">

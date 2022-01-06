@@ -1,5 +1,5 @@
 import faker from "faker";
-import {IConference} from "../../../core";
+import { IConference } from "../../../core";
 
 export class ConferenceMocker {
     private static index: number = 0;

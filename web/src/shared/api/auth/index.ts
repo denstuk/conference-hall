@@ -1,7 +1,7 @@
 import { SignInData, SignUpData } from "./types";
 import { HttpClient } from "../http-client";
 import axios from "axios";
-import {IUser} from "../../../core";
+import { IUser } from "../../../core";
 
 export class AuthAPI extends HttpClient {
     static async signIn(data: SignInData): Promise<string> {
@@ -9,7 +9,7 @@ export class AuthAPI extends HttpClient {
             const result = await axios({
                 method: "POST",
                 url: `${this.server}/api/auth/sign-in`,
-                data
+                data,
             });
             return result.data.accessToken;
         } catch (err: any) {
@@ -22,7 +22,7 @@ export class AuthAPI extends HttpClient {
             const result = await axios({
                 method: "POST",
                 url: `${this.server}/api/auth/sign-up`,
-                data
+                data,
             });
             return result.data.accessToken;
         } catch (err: any) {
@@ -35,7 +35,7 @@ export class AuthAPI extends HttpClient {
             const result = await axios({
                 method: "GET",
                 url: `${this.server}/api/auth/me`,
-                headers: { authorization: this.getToken() }
+                headers: { authorization: this.getToken() },
             });
             return result.data;
         } catch (err: any) {

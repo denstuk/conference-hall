@@ -1,5 +1,5 @@
-import {HttpClient} from "../http-client";
-import {IConference} from "../../../core";
+import { HttpClient } from "../http-client";
+import { IConference } from "../../../core";
 import axios from "axios";
 
 export class ConferencesAPI extends HttpClient {
@@ -8,7 +8,7 @@ export class ConferencesAPI extends HttpClient {
             const result = await axios({
                 method: "POST",
                 url: `${this.server}/api/conferences/search`,
-                data: {}
+                data: {},
             });
             return result.data;
         } catch (err: any) {

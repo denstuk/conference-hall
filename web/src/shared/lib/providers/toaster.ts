@@ -1,4 +1,4 @@
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 export class Toaster {
     static error(message: string): void {
@@ -13,7 +13,7 @@ export class Toaster {
         toast(message, {
             type: "info",
             position: "bottom-right",
-            theme: "dark"
-        })
+            theme: "dark",
+        });
     }
 }

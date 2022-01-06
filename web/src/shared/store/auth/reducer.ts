@@ -1,6 +1,6 @@
-import {AuthActionType} from "./types";
-import type {IUser} from "../../../core";
-import type {AuthAction} from "./actions";
+import { AuthActionType } from "./types";
+import type { IUser } from "../../../core";
+import type { AuthAction } from "./actions";
 
 type AuthData = { authorized: boolean; user?: IUser };
 const InitialData: AuthData = { authorized: false };

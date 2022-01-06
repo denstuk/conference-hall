@@ -1,7 +1,7 @@
 import React from "react";
 import { ConferenceList } from "../../../../shared/components/ConferenceList/ConferenceList";
 import "./YourBoard.sass";
-import {ConferenceMocker} from "../../../../shared/lib/mocks/conferences";
+import { ConferenceMocker } from "../../../../shared/lib/mocks/conferences";
 
 export const YourBoard: React.FC = () => {
     return (

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import {useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { NetworkBg } from "../../shared/components/NetworkBg/NetworkBg";
 import "./Auth.sass";
 import { AuthInput } from "./components/AuthInput/AuthInput";
-import {AuthAPI} from "../../shared/api";
-import {useDispatch} from "react-redux";
-import {bindActionCreators} from "redux";
-import {LocalStorage} from "../../shared/lib/providers/local-storage";
+import { AuthAPI } from "../../shared/api";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { LocalStorage } from "../../shared/lib/providers/local-storage";
 import { authDispatchers } from "../../shared/store";
-import {StorageKey} from "../../core/constants";
+import { StorageKey } from "../../core/constants";
 import * as queryString from "querystring";
-import {Toaster} from "../../shared/lib/providers/toaster";
+import { Toaster } from "../../shared/lib/providers/toaster";
 
 export const Auth: React.FC = () => {
     const dispatch = useDispatch();
@@ -36,7 +36,9 @@ export const Auth: React.FC = () => {
         if (email.trim().length === 0) return Toaster.info("Email must be not empty");
         if (password.trim().length < 8) return Toaster.info("Password must be at list 8 symbols");
 
-        const token = isSignUp ? await AuthAPI.signUp({ login, email, password }) : await AuthAPI.signIn({ email, password });
+        const token = isSignUp
+            ? await AuthAPI.signUp({ login, email, password })
+            : await AuthAPI.signIn({ email, password });
         LocalStorage.set(StorageKey.AccessToken, token);
 
         const user = await AuthAPI.me();
@@ -52,7 +54,7 @@ export const Auth: React.FC = () => {
                     Welcome to <br />
                     Conference<span className="auth-page__title-color">Hall</span>
                 </p>
-                { isSignUp && <AuthInput setFunc={setLogin} name="Login" type="text" /> }
+                {isSignUp && <AuthInput setFunc={setLogin} name="Login" type="text" />}
                 <AuthInput setFunc={setEmail} name="Email" type="text" />
                 <AuthInput setFunc={setPassword} name="Password" type="password" />
                 <div className="auth-page__change-type-wrapper">

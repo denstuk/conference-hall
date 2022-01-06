@@ -1,7 +1,7 @@
 import React from "react";
 import "./Message.sass";
 import dayjs from "dayjs";
-import {IMessage} from "../../../../core";
+import { IMessage } from "../../../../core";
 
 type MessageProps = { message: IMessage };
 
