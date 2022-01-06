@@ -8,6 +8,7 @@ import { IMessage } from "../../core";
 import { LocalStorage } from "../../shared/lib/providers/local-storage";
 import { StorageKey } from "../../core/constants";
 import { MessagesAPI } from "../../shared/api";
+import FA from "react-fontawesome";
 
 export const Conference: React.FC = () => {
     const { id } = useParams();
@@ -48,6 +49,7 @@ export const Conference: React.FC = () => {
         e.preventDefault();
         if (connection) {
             await connection.invoke("SendMessage", { Text: inputMessage });
+            setInputMessage("");
         }
     };
 
@@ -61,8 +63,11 @@ export const Conference: React.FC = () => {
                     <Message key={m.id} message={m} />
                 ))}
             </div>
+            <div className="conference-page__connections">
+                <button><FA name="microphone" /></button>
+            </div>
             <form onSubmit={(e) => sendMessage(e)} className="conference-page__input">
-                <input name="message" onChange={(e) => setInputMessage(e.target.value)} />
+                <input autoComplete="off" name="message" value={inputMessage} onChange={(e) => setInputMessage(e.target.value)} />
             </form>
         </div>
     );
