@@ -17,6 +17,6 @@ jobs:
         dotnet-version: 6.0.100
     - name: Restore and build API
       run: |
-            cd backend/ConferenceHall.API
+            cd backend/ConferenceHall
             dotnet restore
             dotnet build --configuration Release
