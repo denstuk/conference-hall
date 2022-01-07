@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Domain\Auth\Handlers" />
-    <Folder Include="Infrastructure\Database\Configuration" />
     <Folder Include="Static" />
   </ItemGroup>
 
