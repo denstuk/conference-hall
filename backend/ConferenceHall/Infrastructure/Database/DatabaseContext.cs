@@ -1,7 +1,5 @@
-﻿using ConferenceHall.Domain.Conferences.Entities;
-using ConferenceHall.Domain.Messages.Entities;
-using ConferenceHall.Domain.Shared;
-using ConferenceHall.Domain.Users.Entities;
+﻿using ConferenceHall.Domain.Shared;
+using ConferenceHall.Infrastructure.Database.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConferenceHall.Infrastructure.Database
@@ -12,25 +10,9 @@ namespace ConferenceHall.Infrastructure.Database
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<UserEntity>()
-				.HasMany(p => p.Conferences)
-				.WithMany(c => c.Users)
-				.UsingEntity(j => j.ToTable("user_conference"));
-			
-			modelBuilder.Entity<ConferenceEntity>()
-				.HasOne(u => u.Creator)
-				.WithMany(u => u.CreatedConferences)
-				.HasForeignKey(k => k.CreatorId);
-
-			modelBuilder.Entity<MessageEntity>()
-				.HasOne(m => m.Creator)
-				.WithMany(u => u.Messages)
-				.HasForeignKey(m => m.CreatorId);
-
-			modelBuilder.Entity<MessageEntity>()
-				.HasOne(m => m.Conference)
-				.WithMany(c => c.Messages)
-				.HasForeignKey(m => m.ConferenceId);
+			UserConfiguration.Configure(modelBuilder);
+			ConferenceConfiguration.Configure(modelBuilder);
+			MessageConfiguration.Configure(modelBuilder);
 		}
 
 		public override int SaveChanges()
