@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using ConferenceHall.API.Domain.Auth;
+using ConferenceHall.Domain.Auth;
 using Xunit;
 
 namespace ConferenceHall.Tests.Auth;
