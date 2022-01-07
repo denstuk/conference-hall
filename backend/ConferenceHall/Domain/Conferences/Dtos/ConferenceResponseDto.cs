@@ -1,4 +1,4 @@
-﻿using ConferenceHall.Domain.Messages.Entities;
+﻿using ConferenceHall.Domain.Messages.Dtos;
 using ConferenceHall.Domain.Users.Dtos;
 
 namespace ConferenceHall.Domain.Conferences.Dtos;
@@ -9,5 +9,5 @@ public class ConferenceResponseDto
     public string Title { get; set; } = default!;
     public UserResponseDto Creator { get; set; } = default!;
     public DateTime CreatedAt { get; set; }
-    public List<MessageEntity> Messages { get; set; } = new List<MessageEntity>();
+    public List<MessageResponseDto> Messages { get; set; } = new List<MessageResponseDto>();
 }
