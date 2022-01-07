@@ -2,6 +2,7 @@
 using ConferenceHall.Application.Http.Providers;
 using ConferenceHall.Domain.Auth.Dtos;
 using ConferenceHall.Domain.Auth.Handlers.Commands;
+using ConferenceHall.Domain.Users.Dtos;
 using ConferenceHall.Domain.Users.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -39,9 +40,9 @@ public class AuthController : ApiController
 
     [HttpGet("me")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public async Task<ActionResult<UserEntity>> Me()
+    public async Task<ActionResult<UserResponseDto>> Me()
     {
         var user = await _httpProvider.GetUser(HttpContext);
-        return Ok(_mapper.Map<UserEntity>(user));
+        return Ok(_mapper.Map<UserResponseDto>(user));
     }
 }

@@ -24,7 +24,6 @@ builder.Services.AddDbContext<DatabaseContext>(x =>
 DependencyInjection.Register(builder.Services);
 SwaggerDocumentation.Register(builder.Services);
 
-//builder.Services.AddCors();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
@@ -73,7 +72,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseAuthentication();
 app.MapControllers();
-app.UseCors(builder => builder
+app.UseCors(corsPolicyBuilder => corsPolicyBuilder
     .AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader());
